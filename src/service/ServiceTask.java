@@ -14,28 +14,41 @@ import model.Task;
  * @author thiago
  */
 public class ServiceTask {
+    /**
+     * Cria uma nova tarefa
+     * @param task 
+     */
     public static void create(Task task) {
         TaskDAO taskDAO = new TaskDAO();
         taskDAO.insert(task);
     }
     
+    /**
+     * Deleta uma tarefa
+     * @param id 
+     */
     public static void delete(int id) {
         TaskDAO taskDAO = new TaskDAO();
         taskDAO.delete(id);
     }
     
+    /**
+     * Atualiza uma tarefa
+     * @param task
+     * @param id 
+     */
     public static void update(Task task, int id) {
         TaskDAO taskDAO = new TaskDAO();
         taskDAO.update(task, id);
     }
     
     /**
-     * 
+     * Retorna a lista de tarefas
      * @param task 
      */
-    public static List<Task> fetchAll(Task task) {
+    public static List<Task> fetchAll() {
         TaskDAO taskDAO = new TaskDAO();
-        return taskDAO.fetchAll(task);
+        return taskDAO.fetchAll();
     }
     
     /**
@@ -45,5 +58,11 @@ public class ServiceTask {
     public static void fetchOne(int id) {
         TaskDAO taskDAO = new TaskDAO();
         taskDAO.fetchOne(id);
+    }
+    
+    
+    public static void stop(int id) {
+        TaskDAO taskDAO = new TaskDAO();
+        taskDAO.stop(id);
     }
 }

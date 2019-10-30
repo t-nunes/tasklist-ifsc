@@ -13,49 +13,59 @@ import java.time.temporal.ChronoUnit;
  * @author thiago
  */
 public class Task {
+    private int id;
+    
     // Descrição da tarefa
     private String description;
     
-    // Data que a tarefa foi criada/atualizada e iniciada
-    private LocalDateTime createdAt, updatedAt, startedPlay;
+    // Pega a quantidade de segundos gastos
+    private int wastedSeconds;
     
-    // Marca o status da tarefa 
+    // Data que a tarefa foi criada/atualizada e iniciada
+    private String createdAt, updatedAt, startedPlay;
+    
     private boolean status;
     
     /**
      * Construtor da classe de tarefa quando está criando uma nova
      * @param description 
      */
-    Task(
+    public Task(
+            int id,
             String description,
+            int wastedSeconds,
             String createdAt,
             String updatedAt,
             String startedPlay,
             boolean status
     ) {
+        this.id = id;
         this.description = description;
-        this.createdAt = LocalDateTime.parse(createdAt);
-        this.updatedAt = LocalDateTime.parse(updatedAt);
-        this.startedPlay = LocalDateTime.parse(startedPlay);
+        this.wastedSeconds = wastedSeconds;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.startedPlay = startedPlay;
         this.status = status;
     }
     
-    /**
-     * Construtor da classe de tarefa quando está criando uma nova
-     * @param description 
-     */
-    Task(
-            String description,
-            String createdAt,
-            String updatedAt,
-            boolean status
-    ) {
-        this(description, createdAt, updatedAt, null, status);
-    }
-    
     public boolean isPlaying() {
-        return this.startedPlay;
+        return Boolean.parseBoolean(startedPlay);
     }
-    
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public String getStartedPlay() {
+        return startedPlay;
+    }
     
 }
