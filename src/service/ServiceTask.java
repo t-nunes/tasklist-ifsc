@@ -59,9 +59,13 @@ public class ServiceTask {
         taskDAO.fetchOne(id);
     }
     
-    
-    public static void stop(int id) {
+    public static void play(Task task) {
         TaskDAO taskDAO = new TaskDAO();
-        taskDAO.stop(id);
+        taskDAO.play(task);
+    }
+    
+    public static void stop(Task task) {
+        TaskDAO taskDAO = new TaskDAO();
+        taskDAO.stop(task);
     }
 }

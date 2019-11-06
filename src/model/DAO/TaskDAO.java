@@ -151,17 +151,17 @@ public class TaskDAO {
 
     /**
      * Da play em uma tarefa
-     * @param id 
+     * @param task
      */
-    public void play(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void play(Task task) {
+        
     }
     
     /**
      * Para a tarefa
-     * @param id 
+     * @param task
      */
-    public void stop(int id) {
+    public void stop(Task task) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

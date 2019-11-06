@@ -5,6 +5,10 @@
  */
 package view;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import helpers.DateHelpers;
+
 /**
  *
  * @author thiago
@@ -16,6 +20,8 @@ public class JFMain extends javax.swing.JFrame {
      */
     public JFMain() {
         initComponents();
+        System.out.println("NOW: " + DateHelpers.now());
+        System.out.println("Diff in seconds: " + DateHelpers.diffInSeconds("2019-12-20 12:00"));
     }
 
     /**
