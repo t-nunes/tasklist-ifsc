@@ -6,9 +6,13 @@
 package model.DAO;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Task;
+import transformers.TaskTransformer;
 
 /**
  *
@@ -16,47 +20,35 @@ import model.Task;
  */
 public class TaskDAO {
     /**
-     * Deleta uma tarefa (soft delete)
-     * @param id 
-     */
-    public void delete(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /**
-     * Atualiza uma tarefa
-     * @param task
-     * @param id 
-     */
-    public void update(Task task, int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /**
-     * Insere uma tarefa
-     * @param task 
-     */
-    public void insert(Task task) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /**
-     * Busca uma lista de tarefas
-     * @return 
+     * Retorna uma lista de tarefas
      */
     public List<Task> fetchAll() {
-        Task task = new Task(
-                1,
-                "1",
-                0,
-                "2019-05-18 20:20:20",
-                "2019-05-18 20:20:20",
-                "2019-05-18 10:30:00",
-                false
-        );
-        List<Task> lista = new ArrayList<>();
-        lista.add(task);
-        return lista;
+        Connection connection = ConnectionDAO.getConnection();
+        
+        String sql = "select * from task where active = true";
+        
+        PreparedStatement pstm = null;
+        ResultSet resultSet = null;
+        
+        try {
+            pstm = connection.prepareStatement(sql);
+            resultSet = pstm.executeQuery();
+            
+            // Cria uma lista de tarefas
+            List<Task> tasks = new ArrayList<>();
+            
+            while(resultSet.next()) {
+                tasks.add(TaskTransformer.transform(resultSet));
+            }
+            
+            // Fecha a conexão
+            ConnectionDAO.closeConnection(connection, pstm, resultSet);
+
+            return tasks;
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -65,19 +57,98 @@ public class TaskDAO {
      * @return 
      */
     public Task fetchOne(int id) {
-        Task task = new Task(
-                1,
-                "1",
-                0,
-                "2019-05-18 20:20:20",
-                "2019-05-18 20:20:20",
-                "2019-05-18 10:30:00",
-                false
-        );
+        Connection connection = ConnectionDAO.getConnection();
         
-        return task;
+        String sql = "select * from editora where id = ?";
+        
+        PreparedStatement pstm = null;
+        ResultSet resultSet = null;
+        
+        try {
+            pstm = connection.prepareStatement(sql);
+            pstm.setInt(1, id);
+            resultSet = pstm.executeQuery();
+            
+            // vai para o próximo registro
+            resultSet.next();
+            
+            Task task = TaskTransformer.transform(resultSet);
+            
+            ConnectionDAO.closeConnection(connection, pstm, resultSet);
+
+            return task;
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
     
+    /**
+     * Insere uma tarefa
+     * @param task 
+     */
+    public void insert(Task task) {
+        Connection connection = ConnectionDAO.getConnection();
+        
+        String sql = "insert into task (description) values (?)";
+        
+        PreparedStatement pstm = null;
+        
+        try {
+            pstm = connection.prepareStatement(sql);
+            pstm.setString(1, task.getDescription());
+            pstm.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        ConnectionDAO.closeConnection(connection, pstm);
+    }
+    
+    /**
+     * Atualiza uma tarefa
+     * @param task
+     */
+    public void update(Task task) {
+        Connection connection = ConnectionDAO.getConnection();
+        
+        String sql = "update task set description = ? where id = ?";
+        
+        PreparedStatement pstm = null;
+        
+        try {
+            pstm = connection.prepareStatement(sql);
+            pstm.setString(1, task.getDescription());
+            pstm.setInt(2, task.getId());
+            pstm.executeUpdate();
+            
+            ConnectionDAO.closeConnection(connection, pstm);
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    /**
+     * Deleta uma tarefa (soft delete)
+     * @param id 
+     */
+    public void delete(int id) {
+        Connection connection = ConnectionDAO.getConnection();
+        
+        String sql = "update task set status = false where id = ?";
+        
+        PreparedStatement pstm = null;
+        
+        try {
+            pstm = connection.prepareStatement(sql);
+            pstm.setInt(1, id);
+            pstm.executeUpdate();
+            ConnectionDAO.closeConnection(connection, pstm);
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     /**
      * Da play em uma tarefa
      * @param id 

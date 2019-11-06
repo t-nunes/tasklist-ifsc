@@ -35,11 +35,10 @@ public class ServiceTask {
     /**
      * Atualiza uma tarefa
      * @param task
-     * @param id 
      */
-    public static void update(Task task, int id) {
+    public static void update(Task task) {
         TaskDAO taskDAO = new TaskDAO();
-        taskDAO.update(task, id);
+        taskDAO.update(task);
     }
     
     /**
