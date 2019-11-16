@@ -54,16 +54,24 @@ public class ServiceTask {
      * Busca uma tarefa
      * @param {int} id 
      */
-    public static void fetchOne(int id) {
+    public static Task fetchOne(int id) {
         TaskDAO taskDAO = new TaskDAO();
-        taskDAO.fetchOne(id);
+        return taskDAO.fetchOne(id);
     }
     
-    public static void play(Task task) {
+    /**
+     * Da play em uma tarefa
+     * @param id 
+     */
+    public static void play(int id) {
         TaskDAO taskDAO = new TaskDAO();
-        taskDAO.play(task);
+        taskDAO.play(id);
     }
     
+    /**
+     * Para uma tarefa
+     * @param task 
+     */
     public static void stop(Task task) {
         TaskDAO taskDAO = new TaskDAO();
         taskDAO.stop(task);

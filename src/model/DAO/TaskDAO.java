@@ -5,11 +5,13 @@
  */
 package model.DAO;
 
+import helpers.DateHelpers;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import model.Task;
 import transformers.TaskTransformer;
@@ -59,7 +61,7 @@ public class TaskDAO {
     public Task fetchOne(int id) {
         Connection connection = ConnectionDAO.getConnection();
         
-        String sql = "select * from editora where id = ?";
+        String sql = "select * from task where id = ?";
         
         PreparedStatement pstm = null;
         ResultSet resultSet = null;
@@ -151,10 +153,24 @@ public class TaskDAO {
 
     /**
      * Da play em uma tarefa
-     * @param task
+     * @param id - id da tarefa
      */
-    public void play(Task task) {
+    public void play(int id) {
+        Connection connection = ConnectionDAO.getConnection();
         
+        String sql = "update task set started_play = now() where id = ?";
+        
+        PreparedStatement pstm = null;
+        
+        try {
+            pstm = connection.prepareStatement(sql);
+            pstm.setInt(1, id);
+            pstm.executeUpdate();
+            
+            ConnectionDAO.closeConnection(connection, pstm);
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+        }
     }
     
     /**
@@ -162,6 +178,23 @@ public class TaskDAO {
      * @param task
      */
     public void stop(Task task) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection connection = ConnectionDAO.getConnection();
+        
+        // Muda a data para nulo
+        // onde o id for == da tarefa
+        String sql = "update task set started_play = null, wasted_seconds = ? where id = ?";
+        
+        PreparedStatement pstm = null;
+        
+        try {
+            pstm = connection.prepareStatement(sql);
+            pstm.setLong(1, DateHelpers.diffInSeconds(task.getStartedPlay()));
+            pstm.setInt(2, task.getId());
+            pstm.executeUpdate();
+            
+            ConnectionDAO.closeConnection(connection, pstm);
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }
