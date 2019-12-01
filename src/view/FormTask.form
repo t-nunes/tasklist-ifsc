@@ -62,19 +62,19 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" pref="348" max="-2" attributes="0"/>
+                  <Component id="LabelTitle" min="-2" pref="348" max="-2" attributes="0"/>
                   <EmptySpace pref="36" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jLabel1" alignment="0" pref="45" max="32767" attributes="0"/>
+              <Component id="LabelTitle" alignment="0" pref="45" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="LabelTitle">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="PT Sans" size="16" style="0"/>
@@ -96,7 +96,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="inputDescricao" max="32767" attributes="0"/>
+                  <Component id="inputDescription" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -105,7 +105,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="inputDescricao" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="inputDescription" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -119,7 +119,7 @@
             <Property name="text" type="java.lang.String" value="Descricao"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="inputDescricao">
+        <Component class="javax.swing.JTextField" name="inputDescription">
         </Component>
       </SubComponents>
     </Container>
@@ -129,9 +129,9 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="ButtonCancelar" min="-2" pref="145" max="-2" attributes="0"/>
+                  <Component id="ButtonDismiss" min="-2" pref="145" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="ButtonSalvar" min="-2" pref="145" max="-2" attributes="0"/>
+                  <Component id="ButtonSubmit" min="-2" pref="145" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -140,8 +140,8 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="ButtonCancelar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="ButtonSalvar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="ButtonDismiss" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="ButtonSubmit" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -149,15 +149,18 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="ButtonCancelar">
+        <Component class="javax.swing.JButton" name="ButtonDismiss">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="ButtonSalvar">
+        <Component class="javax.swing.JButton" name="ButtonSubmit">
           <Properties>
             <Property name="text" type="java.lang.String" value="Salvar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonSubmitActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

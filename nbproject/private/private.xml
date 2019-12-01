@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/thiago/NetBeansProjects/TaskList/src/view/FormTask.java</file>
+            <file>file:/Users/thiago/NetBeansProjects/TaskList/src/controller/ControllerFormTask.java</file>
+            <file>file:/Users/thiago/NetBeansProjects/TaskList/src/service/ServiceTask.java</file>
+            <file>file:/Users/thiago/NetBeansProjects/TaskList/src/model/DAO/TaskDAO.java</file>
             <file>file:/Users/thiago/NetBeansProjects/TaskList/src/helpers/DateHelpers.java</file>
             <file>file:/Users/thiago/NetBeansProjects/TaskList/src/view/JFMain.java</file>
+            <file>file:/Users/thiago/NetBeansProjects/TaskList/src/controller/ControllerTaskMain.java</file>
+            <file>file:/Users/thiago/NetBeansProjects/TaskList/src/model/Task.java</file>
         </group>
     </open-files>
 </project-private>

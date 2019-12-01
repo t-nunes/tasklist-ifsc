@@ -27,7 +27,7 @@ public class TaskDAO {
     public List<Task> fetchAll() {
         Connection connection = ConnectionDAO.getConnection();
         
-        String sql = "select * from task where active = true";
+        String sql = "select * from task where active = 1";
         
         PreparedStatement pstm = null;
         ResultSet resultSet = null;
@@ -137,7 +137,7 @@ public class TaskDAO {
     public void delete(int id) {
         Connection connection = ConnectionDAO.getConnection();
         
-        String sql = "update task set status = false where id = ?";
+        String sql = "update task set active = 0 where id = ?";
         
         PreparedStatement pstm = null;
         
@@ -188,7 +188,7 @@ public class TaskDAO {
         
         try {
             pstm = connection.prepareStatement(sql);
-            pstm.setLong(1, DateHelpers.diffInSeconds(task.getStartedPlay()));
+            pstm.setLong(1, DateHelpers.diffInSeconds(task.getStartedPlay()) + task.getWastedSeconds() - 3600);
             pstm.setInt(2, task.getId());
             pstm.executeUpdate();
             

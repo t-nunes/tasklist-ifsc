@@ -5,19 +5,70 @@
  */
 package view;
 
+import controller.ControllerTaskMain;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
 /**
  *
  * @author thiago
  */
 public class FormTask extends javax.swing.JDialog {
+    protected ControllerTaskMain main;
+
 
     /**
      * Creates new form FormTask
      */
-    public FormTask(java.awt.Frame parent, boolean modal) {
+    public FormTask(
+            java.awt.Frame parent, 
+            boolean modal
+    ) {
         super(parent, modal);
         initComponents();
     }
+    
+    /**
+     * Retorna o botão de submit
+     */
+    public JButton getButtonSubmit() {
+        return ButtonSubmit;
+    }
+    
+    /**
+     * Retorna o botão de cancelar
+     * @return 
+     */
+    public JButton getButtonDismiss() {
+        return ButtonDismiss;
+    }
+    
+    /**
+     * Retorna o input de descrição
+     * @return 
+     */
+    public JTextField getInputDescription() {
+        return inputDescription;
+    }
+    
+    /**
+     * Retorna a descrição
+     * @return 
+     */
+    public String getDescription() {
+        return this.getInputDescription().getText();
+    }
+    
+    /**
+     * Retorna o título da modal
+     * @return 
+     */
+    public JLabel getLabelTitle() {
+        return LabelTitle;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,22 +80,22 @@ public class FormTask extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        LabelTitle = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        inputDescricao = new javax.swing.JTextField();
+        inputDescription = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        ButtonCancelar = new javax.swing.JButton();
-        ButtonSalvar = new javax.swing.JButton();
+        ButtonDismiss = new javax.swing.JButton();
+        ButtonSubmit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 0, 255));
         jPanel1.setForeground(new java.awt.Color(204, 153, 255));
 
-        jLabel1.setFont(new java.awt.Font("PT Sans", 0, 16)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Nova Tarefa");
+        LabelTitle.setFont(new java.awt.Font("PT Sans", 0, 16)); // NOI18N
+        LabelTitle.setForeground(new java.awt.Color(255, 255, 255));
+        LabelTitle.setText("Nova Tarefa");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -52,12 +103,12 @@ public class FormTask extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LabelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+            .addComponent(LabelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
         );
 
         jLabel2.setText("Descricao");
@@ -70,38 +121,43 @@ public class FormTask extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(inputDescricao))
+                .addComponent(inputDescription))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        ButtonCancelar.setText("Cancelar");
+        ButtonDismiss.setText("Cancelar");
 
-        ButtonSalvar.setText("Salvar");
+        ButtonSubmit.setText("Salvar");
+        ButtonSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonSubmitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(ButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ButtonDismiss, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(ButtonSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ButtonDismiss, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -129,6 +185,10 @@ public class FormTask extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ButtonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSubmitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonSubmitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,10 +233,10 @@ public class FormTask extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonCancelar;
-    private javax.swing.JButton ButtonSalvar;
-    private javax.swing.JTextField inputDescricao;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton ButtonDismiss;
+    private javax.swing.JButton ButtonSubmit;
+    private javax.swing.JLabel LabelTitle;
+    private javax.swing.JTextField inputDescription;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

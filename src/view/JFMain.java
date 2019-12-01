@@ -5,12 +5,14 @@
  */
 package view;
 
+import controller.ControllerFormTask;
 import controller.ControllerTaskMain;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import helpers.DateHelpers;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.Task;
@@ -57,6 +59,10 @@ public class JFMain extends javax.swing.JFrame {
     public JLabel getLabelTimer() {
         return LabelTimer;
     }
+    
+    public JMenuItem getMenuClose() {
+        return MenuClose;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -82,7 +88,7 @@ public class JFMain extends javax.swing.JFrame {
         LabelTimer = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        MenuClose = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -199,7 +205,7 @@ public class JFMain extends javax.swing.JFrame {
         jLabel1.setText("Tempo decorrido");
 
         LabelTimer.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        LabelTimer.setText("--:--");
+        LabelTimer.setText("--:--:--");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -226,8 +232,8 @@ public class JFMain extends javax.swing.JFrame {
 
         jMenu1.setText("Inicio");
 
-        jMenuItem1.setText("Sair");
-        jMenu1.add(jMenuItem1);
+        MenuClose.setText("Sair");
+        jMenu1.add(MenuClose);
 
         jMenuBar1.add(jMenu1);
 
@@ -318,11 +324,11 @@ public class JFMain extends javax.swing.JFrame {
     private javax.swing.JButton ButtonTaskUpdate;
     private javax.swing.JLabel LabelCurrentTask;
     private javax.swing.JLabel LabelTimer;
+    private javax.swing.JMenuItem MenuClose;
     private javax.swing.JTable TableTasks;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

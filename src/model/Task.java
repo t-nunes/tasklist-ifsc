@@ -27,6 +27,10 @@ public class Task {
     // Status de visibilidade usado soft-delete
     private boolean active;
     
+    public Task() {
+        
+    }
+    
     /**
      * Construtor da classe de tarefa quando está criando uma nova
      * @param description 
@@ -62,5 +66,9 @@ public class Task {
     public String getCreatedAt() { return createdAt; }
     public String getUpdatedAt() { return updatedAt; }
     public String getStartedPlay() { return startedPlay; }
+    
+    public void setDescription(String description) {
+        this.description = description;
+    }
     
 }
